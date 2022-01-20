@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+   <record id="barcode_configuration_form_view" model="ir.ui.view">
+        <field name="name">barcode.print.configuration.form</field>
+        <field name="model">barcode.print.configuration</field>
+        <field name="arch" type="xml">
+        <form string="Barcode Configuration">
+               <form>
+
+                        <group >
+                             <group>
+                                     <field name="item_name_x1"/>
+                                <field name="item_variant_x1"/>
+                                <field name="dimensions_x1"/>
+                                <field name="size_x1"/>
+                                <field name="date_x1"/>
+                                <field name="quantity_x1"/>
+                                <field name="barcode_x1"/>
+                                <field name="price_state1_y1"/>
+                                 <field name="price_state2_y1"/>
+                                 <field name="price_state3_y1"/>
+                                 <field name="price_state4_y1"/>
+                                 <field name="price_state5_y1"/>
+                                 <field name="price_state6_y1"/>
+                                 <field name="price_state7_y1"/>
+                                 <field name="price_state8_y1"/>
+                                 <field name="price_state9_y1"/>
+                                 <field name="price_state10_y1"/>
+                                 <field name="price_state11_y1"/>
+                                </group>
+
+                            <group>
+                                <field name="item_name_y1"/>
+                                <field name="item_variant_y1"/>
+                                <field name="dimensions_y1"/>
+                                <field name="size_y1"/>
+                                <field name="date_y1"/>
+                                <field name="quantity_y1"/>
+                                  <field name="barcode_y1"/>
+                                <field name="price_state1_x"/>
+
+
+                            </group>
+                        </group>
+
+                </form>
+            </form>
+        </field>
+
+    </record>
+
+       <record model="ir.ui.view" id="barcode_configuration_tree">
+            <field name="name">barcode.print.configuration.tree</field>
+            <field name="model">barcode.print.configuration</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="item_name_x1"/>
+                    <field name="item_variant_x1"/>
+                    <field name="dimensions_x1"/>
+                    <field name="size_x1"/>
+                    <field name="date_x1"/>
+                    <field name="quantity_x1"/>
+                    <field name="barcode_x1"/>
+                </tree>
+
+            </field>
+        </record>
+
+
+       <record model="ir.actions.act_window" id="barcode_print_configuration_settings_action">
+            <field name="name"> Barcode Print Configuration</field>
+            <field name="res_model">barcode.print.configuration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create"> Barcode Print Configurations   </p>
+            </field>
+        </record>
+
+
+
+
+        <menuitem id="barcode_print_configuration_settings_menu" name="Barcode Print Configurations" action="barcode_print_configuration_settings_action"
+                  parent="base.menu_custom"  />
+
+
+  </data>
+</odoo>
