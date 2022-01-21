@@ -23,11 +23,18 @@ class BarcodeConfiguration(http.Controller):
             left join product_attribute_value AS pdt_att_val on pdt_att.id=pdt_att_val.attribute_id
             WHERE pdt_att.id = %s and pdt_temp.id in %s """, (attribute_id, tuple([product_id]),))
             res = request._cr.dictfetchall()
-            print('res', res)
+            # print('res', res)
             res_dumps = json.dumps(res)
-            print('res_dumps', res_dumps)
+            # print('res_dumps', res_dumps)
             return res_dumps
-            return json.loads({'result': res_dumps})
+            # return json.loads({'result': res_dumps})
         else:
-            return "Missing Size"
+            query = request._cr.execute("""
+                                          select pdt_temp.id,pdt_temp.name,pdt_temp.content,pdt_temp.dimensions,pdt_pdt.barcode,
+                        pdt_temp.list_price,'' AS attribute_name,'' AS attribute_value  from product_template As pdt_temp 
+                        left join product_product AS pdt_pdt on pdt_temp.id=pdt_pdt.product_tmpl_id
+                        WHERE  pdt_temp.id in %s """, (tuple([product_id]),))
+            res = request._cr.dictfetchall()
+            res_dumps = json.dumps(res)
+            return res_dumps
 
