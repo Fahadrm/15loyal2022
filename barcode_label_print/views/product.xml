@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="label_product_form_hide_cost">
+            <field name="name">product.product.cost</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='uom_id']" position="after">
+<!--                <xpath expr="//field[@name='standard_price']" position="after">-->
+                    <field name="dimensions"/>
+                    <field name="content"/>
+                      <field name="suffix"/>
+                     <field name="serial_no"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

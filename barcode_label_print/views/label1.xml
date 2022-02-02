@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="barcode_label1_product_view">
+		<t t-foreach="quantity.items()" t-as="barcode_and_qty_by_product">
+                <t t-set="product" t-value="barcode_and_qty_by_product[0]"/>
+
+                         <t t-set="serials" t-value="product.product_id.serial_no"/>
+
+                <t t-foreach="barcode_and_qty_by_product[1]" t-as="barcode_and_qty">
+                    <t t-set="barcode" t-value="barcode_and_qty[0]"/>
+                    <t t-foreach="range(barcode_and_qty[1])" t-as="qty">
+<!--                        <t t-if="product.product_id.suffix">-->
+                            <t t-set="barcode_sl" t-value="product.product_id.suffix+str(serials)"/>
+<!--                        </t>-->
+<!--                         <t t-if="not product.product_id.suffix">-->
+<!--                            <t t-set="barcode_sl" t-value="str(serials)"/>-->
+<!--                        </t>-->
+
+
+                        <t t-if="product.manual_print=='manual'">
+                             <t t-set="barcode_sl" t-value="product.serial_no"/>
+                        </t>
+                        <t t-translation="off">
+~n|
+~L|
+D11|
+H15|
+FB+|
+C0005|
+191100405620110<t t-esc="product.product_id.name"/>|
+191100305460110<t t-esc="product.content"/>|
+191100305260110<t t-esc="product.dimensions"/>|
+191100405060110<t t-esc="product.product_template_attribute_value_ids.name"/>|
+191100304860110<t t-esc="product.date.strftime('%d-%m-%Y')"/>|
+191100404240156<t t-if="product.label1_state=='KL'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100403990156<t t-if="product.label1_state=='TM'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100403740156<t t-if="product.label1_state=='AN'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100403490156<t t-if="product.label1_state=='MH'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100403210156<t t-if="product.label1_state=='GJ'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100403010156<t t-if="product.label1_state=='RJ'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100402820156<t t-if="product.label1_state=='UP'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100402640156<t t-if="product.label1_state=='PB'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100402320156<t t-if="product.label1_state=='DL'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100401950156<t t-if="product.label1_state=='WB'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+191100401560156<t t-if="product.label1_state=='AR'"><t t-esc="product.price_list_price()" t-options='{"widget": "float", "precision": 2}'/></t><t t-else="">0</t>|
+2W1j5204403300231<t t-esc="barcode_sl"/>|
+2911A1203300273<t t-esc="barcode_sl"/>|
+Q0001|
+E|
+                        </t>
+                         <t t-set="serials" t-value="serials+1"/>
+                    </t>
+
+                    <t t-esc="product.serial_updation(serials)"/>
+
+                </t>
+
+
+            </t>
+        </template>
+
+    </data>
+</odoo>
+
+<!--<t t-if="barcode">-->
+<!--2W1j5204403300231<t t-esc="barcode"/>|-->
+<!--</t>-->
